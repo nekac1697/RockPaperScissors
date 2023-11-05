@@ -42,10 +42,7 @@ function calculateWinner(cpuChoice, userChoice) {
   }
 }
 
-function playRound() {
-  let cpuChoice = computerMove();
-  let userChoice = userMove();
-  let winner = calculateWinner(cpuChoice, userChoice);
+function scoreDisplay(winner) {
   let score = document.getElementById("score");
   let cpuScore = document.getElementById("cpu");
   let userScore = document.getElementById("user");
@@ -59,6 +56,13 @@ function playRound() {
     cpuScore.textContent = "Computer:" + cpuPoints;
   }
   score.textContent = winner;
+}
+
+function playRound() {
+  let cpuChoice = computerMove();
+  let userChoice = userMove();
+  let winner = calculateWinner(cpuChoice, userChoice);
+  scoreDisplay(winner);
 }
 
 let userPoints = 0;
