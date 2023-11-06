@@ -10,18 +10,23 @@ function computerMove() {
   }
   return choice;
 }
+let userPoints = 0;
+let cpuPoints = 0;
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
 
-function userMove() {
-  let choice = prompt("Please enter your choice");
-  choice = choice.toUpperCase();
-  console.log(choice);
-  if (choice !== "ROCK" && choice !== "PAPER" && choice !== "SCISSORS") {
-    alert("Wrong input. You inputed " + choice + ". Try Again.");
-    choice = prompt("Please enter your choice");
-    choice = choice.toUpperCase();
-  } else {
-    return choice;
-  }
+rock.addEventListener("click", () => {
+  playRound(rock.textContent);
+});
+paper.addEventListener("click", () => {
+  playRound(paper.textContent);
+});
+scissors.addEventListener("click", () => {
+  playRound(scissors.textContent);
+});
+function userMove(choice) {
+  return choice;
 }
 
 function calculateWinner(cpuChoice, userChoice) {
@@ -42,12 +47,11 @@ function calculateWinner(cpuChoice, userChoice) {
   }
 }
 
-function scoreDisplay(winner) {
+function scoreDisplay(winner, cpuChoice, userChoice) {
   let score = document.getElementById("score");
   let cpuScore = document.getElementById("cpu");
   let userScore = document.getElementById("user");
   if (winner == "Draw. No winner") {
-    return;
   } else if (winner == "User wins!") {
     userPoints++;
     userScore.textContent = "User:" + userPoints;
@@ -55,15 +59,31 @@ function scoreDisplay(winner) {
     cpuPoints++;
     cpuScore.textContent = "Computer:" + cpuPoints;
   }
-  score.textContent = winner;
+  score.textContent =
+    "User picked: " + userChoice + " Cpu picked: " + cpuChoice + " " + winner;
+
+  if (userPoints == 5 || cpuPoints == 5) {
+    if (userPoints == 5) {
+      score.textContent =
+        "USER WINS. Final result: CPU: " + cpuPoints + " User: " + userPoints;
+      cpuPoints = 0;
+      userPoints = 0;
+      cpuScore.textContent = "Computer:" + cpuPoints;
+      userScore.textContent = "User:" + userPoints;
+    } else {
+      score.textContent =
+        "CPU WINS. Final result: CPU: " + cpuPoints + " User: " + userPoints;
+      cpuPoints = 0;
+      userPoints = 0;
+      cpuScore.textContent = "Computer:" + cpuPoints;
+      userScore.textContent = "User:" + userPoints;
+    }
+  }
 }
 
-function playRound() {
+function playRound(x) {
   let cpuChoice = computerMove();
-  let userChoice = userMove();
+  let userChoice = userMove(x);
   let winner = calculateWinner(cpuChoice, userChoice);
-  scoreDisplay(winner);
+  scoreDisplay(winner, cpuChoice, userChoice);
 }
-
-let userPoints = 0;
-let cpuPoints = 0;

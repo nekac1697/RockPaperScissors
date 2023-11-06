@@ -2,29 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
   <body>
-    <script src="index.js"></script>
-    <h1>Are you ready to play?</h1>
-    <h2>
-      Press this button to start
-      <button onclick="playRound()" id="dugme">PRESS ME</button>
-    </h2>
+    <div id="gameContainer">
+      <div id="top">
+        <h1>Are you ready to play?</h1>
+      </div>
+      <div id="buttons">
+        <button class="btn" id="rock">ROCK</button>
+        <button class="btn" id="paper">PAPER</button>
+        <button class="btn" id="scissors">SCISSORS</button>
+      </div>
+      <div id="gameScore">
+        <div class="choices">
+          <p id="cpu">Computer:</p>
+          <p id="user">User:</p>
+          <button style="height: 50px; width: 70px; font-size: 18px" id="reset">
+            Reset game
+          </button>
+        </div>
 
-    <h2>Current score:</h2>
-    <h3 id="cpu">Computer:</h3>
-    <h3 id="user">User:</h3>
-    <div
-      id="score"
-      style="
-        height: 300px;
-        width: 600px;
-        margin: 0px auto;
-        background-color: bisque;
-        font-size: 40px;
-      "
-    ></div>
+        <div id="score">Round Winner:</div>
+      </div>
+    </div>
+    <script src="index.js"></script>
   </body>
 </html>
